@@ -5,7 +5,7 @@ Usage: application [--submit]
 """
 
 from docopt import docopt
-import requests
+from requests import request
 
 from responses import ApplicationResponse
 
@@ -19,10 +19,24 @@ US_AUTHORIZED = True
 SPONSORSHIP_REQ = False
 LINKEDIN_URL = "https://www.linkedin.com/in/jackacase/"
 GITHUB_URL = "https://github.com/GandalfDG"
-RESUME_URL = ""
+RESUME_URL = "TODO"
 
 ATTRACTION = """
-
+I've been working on various web development projects in my free time, and at
+the same time I've been in the job market looking for something new. The
+Linkedin message I got inviting me to 'apply by API' caught my eye, and learning
+what the company is all about definitely piqued my interest further. So far in
+my career I've worked at places making serious hardware for defense
+applications, building energy monitoring applications so corporations can tick
+the 'environmentally conscious' box, and developing IP for even larger companies
+to save power on their wireless radio installations. What all of these have had
+in common was a serious lack of being able to explain my job to my family and
+friends, and a lack of that satisfying feeling of seeing someone truly enjoying
+what I've made. Seeing that Level99 is innovating in the amusement industry, as
+well as working with heavy-hitters in the industry including Disney Imagineering
+really called out to me. My fiance (wife in just over a week!) and I love
+amusement parks and rollercoasters, and she works as a Disney travel agent, so
+to also be involved in this industry would be a dream come true!
 """
 
 EXPECTED_SALARY = ""
@@ -63,6 +77,9 @@ def main():
     )
 
     print(response.get_data())
+
+    api_response = request("POST", API_URL, data=response.get_data())
+    print(api_response)
     pass
 
 
